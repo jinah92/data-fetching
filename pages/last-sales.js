@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { firestore } from '../firebase'
 
-function LastSalesPage() {
-  const [sales, setSales] = useState([])
+function LastSalesPage(props) {
+  const [sales, setSales] = useState(props.sales)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -26,10 +26,6 @@ function LastSalesPage() {
     return <p>Loading ...</p>
   }
 
-  if (!sales) {
-    return <p>No data</p>
-  }
-
   return (
     <ul>
       {sales.map((sale, idx) => (
@@ -39,6 +35,22 @@ function LastSalesPage() {
       ))}
     </ul>
   )
+}
+
+export async function getStaticProps() {
+  const transformedSales = []
+
+  const bucket = firestore.collection('sales')
+  return bucket.get().then((docs) => {
+    docs.forEach((doc) => {
+      if (doc.exists) {
+        const { username, volume } = doc.data()
+        transformedSales.push({ username, volume })
+      }
+    })
+
+    return { props: { sales: transformedSales } }
+  })
 }
 
 export default LastSalesPage
