@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "dotenv": "^16.0.2",
     "firebase": "^9.9.4",
     "next": "^12.3.0",
     "react": "17.0.1",

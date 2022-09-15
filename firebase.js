@@ -3,13 +3,13 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDGAaNvIBOpA2gfk9JIO-IPtwGLtwkkIPA',
-  authDomain: 'nextjs-course-fe989.firebaseapp.com',
-  databaseURL: 'https://nextjs-course-fe989-default-rtdb.firebaseio.com',
-  projectId: 'nextjs-course-fe989',
-  storageBucket: 'nextjs-course-fe989.appspot.com',
-  messagingSenderId: '50321637603',
-  appId: '1:50321637603:web:3f6b5f816d927d1c6f45d6'
+  apiKey: process.env.NEXT_PUBLIC_APP_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_DB_URL,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGE_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID
 }
 
 // firebaseConfig 정보로 firebase 시작
